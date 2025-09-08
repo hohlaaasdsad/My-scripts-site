@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Scripts - Фотка Чит</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #ff6b6b;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a5b1c2;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .script-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .script-card {
+            background: linear-gradient(145deg, #2d4059, #1e2a3a);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .script-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .script-card h3 {
+            color: #ff9a3c;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .script-content {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(to right, #ff7b25, #ff5e57);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .copy-btn:hover {
+            background: linear-gradient(to right, #ff5e57, #ff3f34);
+            transform: scale(1.03);
+        }
+        
+        .copy-btn.copied {
+            background: linear-gradient(to right, #0be881, #05c46b);
+        }
+        
+        .copy-icon {
+            margin-right: 8px;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #0be881;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            opacity: 1;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #a5b1c2;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .script-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🎮</div>
+            <h1>Roblox Scripts Hub</h1>
+            <p class="subtitle">Лучшие скрипты для Roblox в один клик!</p>
+        </header>
+        
+        <div class="script-grid">
+            <div class="script-card">
+                <h3>Фотка Чит</h3>
+                <div class="script-content">
+                    -- Фотка Чит v3.5<br>
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/fotka/cheat/main/loader.lua"))()<br>
+                    wait(1)<br>
+                    _G.Enable = true<br>
+                    _G.AutoFarm = true<br>
+                    _G.InfiniteJump = true<br>
+                    print("Фотка чит активирован!")
+                </div>
+                <button class="copy-btn" onclick="copyScript(this, 0)">
+                    <span class="copy-icon">📋</span> Скопировать скрипт
+                </button>
+            </div>
+            
+            <div class="script-card">
+                <h3>Fly Script</h3>
+                <div class="script-content">
+                    -- Fly Script v2.1<br>
+                    loadstring(game:HttpGet("https://pastebin.com/raw/4dZ90XkL"))()<br>
+                    <br>
+                    -- Использование:<br>
+                    -- F - взлет/посадка<br>
+                    -- Q - увеличить скорость<br>
+                    -- E - уменьшить скорость
+                </div>
+                <button class="copy-btn" onclick="copyScript(this, 1)">
+                    <span class="copy-icon">📋</span> Скопировать скрипт
+                </button>
+            </div>
+            
+            <div class="script-card">
+                <h3>Auto Farm</h3>
+                <div class="script-content">
+                    -- Auto Farm для Blox Fruits<br>
+                    _G.Farm = true<br>
+                    while _G.Farm do<br>
+                    &nbsp;&nbsp;wait(0.5)<br>
+                    &nbsp;&nbsp;for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if v.Humanoid.Health > 0 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wait(0.2)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;end<br>
+                    &nbsp;&nbsp;end<br>
+                    end
+                </div>
+                <button class="copy-btn" onclick="copyScript(this, 2)">
+                    <span class="copy-icon">📋</span> Скопировать скрипт
+                </button>
+            </div>
+            
+            <div class="script-card">
+                <h3>Infinite Yield</h3>
+                <div class="script-content">
+                    -- Infinite Yield Admin<br>
+                    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()<br>
+                    <br>
+                    -- Команды:<br>
+                    -- ;fly - полет<br>
+                    -- ;noclip - режим сквозь стены<br>
+                    -- ;farm - автоматический фарм
+                </div>
+                <button class="copy-btn" onclick="copyScript(this, 3)">
+                    <span class="copy-icon">📋</span> Скопировать скрипт
+                </button>
+            </div>
+            
+            <div class="script-card">
+                <h3>ESP Script</h3>
+                <div class="script-content">
+                    -- ESP для всех игроков<br>
+                    for i, player in pairs(game.Players:GetPlayers()) do<br>
+                    &nbsp;&nbsp;if player ~= game.Players.LocalPlayer then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;local highlight = Instance.new("Highlight")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;highlight.Parent = player.Character<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;highlight.FillColor = Color3.fromRGB(255, 0, 0)<br>
+                    &nbsp;&nbsp;end<br>
+                    end
+                </div>
+                <button class="copy-btn" onclick="copyScript(this, 4)">
+                    <span class="copy-icon">📋</span> Скопировать скрипт
+                </button>
+            </div>
+            
+            <div class="script-card">
+                <h3>Speed Hack</h3>
+                <div class="script-content">
+                    -- Увеличение скорости<br>
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50<br>
+                    <br>
+                    -- Изменение скорости прыжка<br>
+                    game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100<br>
+                    <br>
+                    -- Для GUI интерфейса используйте:<br>
+                    -- loadstring(game:HttpGet("https://pastebin.com/raw/JipYNgqX"))()
+                </div>
+                <button class="copy-btn" onclick="copyScript(this, 5)">
+                    <span class="copy-icon">📋</span> Скопировать скрипт
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Roblox Scripts Hub | Все скрипты предоставлены в ознакомительных целях</p>
+        </footer>
+    </div>
+    
+    <div class="notification" id="notification">Скрипт скопирован в буфер обмена!</div>
+    
+    <script>
+        const scripts = [
+            `-- Фотка Чит v3.5
+loadstring(game:HttpGet("https://raw.githubusercontent.com/fotka/cheat/main/loader.lua"))()
+wait(1)
+_G.Enable = true
+_G.AutoFarm = true
+_G.InfiniteJump = true
+print("Фотка чит активирован!")`,
+
+            `-- Fly Script v2.1
+loadstring(game:HttpGet("https://pastebin.com/raw/4dZ90XkL"))()
+
+-- Использование:
+-- F - взлет/посадка
+-- Q - увеличить скорость
+-- E - уменьшить скорость`,
+
+            `-- Auto Farm для Blox Fruits
+_G.Farm = true
+while _G.Farm do
+    wait(0.5)
+    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+        if v.Humanoid.Health > 0 then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+            wait(0.2)
+        end
+    end
+end`,
+
+            `-- Infinite Yield Admin
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+
+-- Команды:
+-- ;fly - полет
+-- ;noclip - режим сквозь стены
+-- ;farm - автоматический фарм`,
+
+            `-- ESP для всех игроков
+for i, player in pairs(game.Players:GetPlayers()) do
+    if player ~= game.Players.LocalPlayer then
+        local highlight = Instance.new("Highlight")
+        highlight.Parent = player.Character
+        highlight.FillColor = Color3.fromRGB(255, 0, 0)
+    end
+end`,
+
+            `-- Увеличение скорости
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+
+-- Изменение скорости прыжка
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100
+
+-- Для GUI интерфейса используйте:
+-- loadstring(game:HttpGet("https://pastebin.com/raw/JipYNgqX"))()`
+        ];
+        
+        function copyScript(button, index) {
+            const textArea = document.createElement('textarea');
+            textArea.value = scripts[index];
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Показываем уведомление
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            // Меняем стиль кнопки
+            button.classList.add('copied');
+            button.innerHTML = '<span class="copy-icon">✅</span> Скопировано!';
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                button.classList.remove('copied');
+                button.innerHTML = '<span class="copy-icon">📋</span> Скопировать скрипт';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
