@@ -3,33 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FrostHub - Лучшие скрипты для Roblox</title>
+    <title>FrostHub - Премиум скрипты для Roblox</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2a3b4c;
-            --secondary: #3a4b5c;
+            --primary: #1a2434;
+            --secondary: #242f3e;
             --accent: #5d8aa8;
+            --accent-dark: #4a6e87;
+            --accent-light: #7ba0bb;
             --text: #e0e0e0;
-            --background: #1e2a38;
-            --card-bg: #253241;
-            --success: #5cb85c;
-            --warning: #f0ad4e;
-            --error: #d9534f;
+            --text-light: #a0aec0;
+            --background: #151c28;
+            --card-bg: #1e2939;
+            --card-hover: #233143;
+            --success: #48bb78;
+            --warning: #ecc94b;
+            --error: #f56565;
             --highlight: #6c8ba7;
+            --gradient: linear-gradient(135deg, #5d8aa8 0%, #7ba0bb 100%);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
         
         body {
             background-color: var(--background);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -45,8 +54,9 @@
             padding: 15px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
         
         .header-content {
@@ -58,40 +68,64 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            text-decoration: none;
         }
         
-        .logo i {
-            font-size: 28px;
+        .logo-icon {
+            font-size: 32px;
             color: var(--accent);
+            transition: var(--transition);
         }
         
-        .logo h1 {
-            font-size: 24px;
+        .logo:hover .logo-icon {
+            transform: rotate(180deg);
+            color: var(--accent-light);
+        }
+        
+        .logo-text {
+            font-size: 26px;
             font-weight: 700;
-            background: linear-gradient(45deg, var(--accent), #8fc1e3);
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
         }
         
         nav ul {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 25px;
         }
         
         nav a {
             color: var(--text);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
-            padding: 5px 10px;
-            border-radius: 4px;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+            transform: translateX(-50%);
         }
         
         nav a:hover {
-            color: var(--accent);
-            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-light);
+        }
+        
+        nav a:hover:after {
+            width: 80%;
         }
         
         .user-actions {
@@ -101,27 +135,31 @@
         }
         
         .btn {
-            padding: 8px 16px;
-            border-radius: 4px;
+            padding: 10px 20px;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-primary {
-            background-color: var(--accent);
+            background: var(--gradient);
             color: white;
+            box-shadow: 0 4px 15px rgba(93, 138, 168, 0.3);
         }
         
         .btn-primary:hover {
-            background-color: #4a7699;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(93, 138, 168, 0.4);
         }
         
         .btn-outline {
             background: transparent;
-            border: 1px solid var(--accent);
+            border: 2px solid var(--accent);
             color: var(--accent);
         }
         
@@ -132,60 +170,108 @@
         
         /* Hero Section */
         .hero {
-            padding: 60px 0;
+            padding: 100px 0 80px;
             text-align: center;
             background: linear-gradient(to bottom, var(--primary), var(--background));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(93,138,168,0.1) 0%, rgba(0,0,0,0) 70%);
+            animation: pulse 15s infinite linear;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
         
         .hero h2 {
-            font-size: 2.5rem;
+            font-size: 3.2rem;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--accent), #8fc1e3);
+            background: linear-gradient(45deg, var(--accent-light), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            color: #c0c0c0;
+            font-size: 1.3rem;
+            margin: 0 auto 40px;
+            color: var(--text-light);
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         .stats {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
+            gap: 50px;
+            margin-top: 70px;
+            flex-wrap: wrap;
         }
         
         .stat-item {
             text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            min-width: 160px;
+            transition: var(--transition);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
         }
         
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             color: var(--accent);
+            margin-bottom: 5px;
         }
         
         .stat-label {
             font-size: 1rem;
-            color: #c0c0c0;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         /* Scripts Section */
         .scripts-section {
-            padding: 60px 0;
+            padding: 100px 0;
+            position: relative;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
             color: var(--accent);
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
         }
         
         .section-title::after {
@@ -194,55 +280,73 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--accent);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
         }
         
         .script-filters {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
         
         .filter-btn {
-            padding: 8px 16px;
+            padding: 10px 20px;
             background: var(--card-bg);
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             color: var(--text);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
+            font-weight: 500;
         }
         
         .filter-btn.active, .filter-btn:hover {
-            background: var(--accent);
+            background: var(--gradient);
             color: white;
+            box-shadow: 0 4px 15px rgba(93, 138, 168, 0.3);
         }
         
         .scripts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 30px;
         }
         
         .script-card {
             background: var(--card-bg);
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
         }
         
         .script-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            background: var(--card-hover);
+        }
+        
+        .script-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
         }
         
         .script-header {
-            padding: 15px;
+            padding: 20px;
             background: var(--secondary);
             display: flex;
             justify-content: space-between;
@@ -250,51 +354,56 @@
         }
         
         .script-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
         }
         
         .script-game {
             font-size: 0.9rem;
             color: var(--accent);
-            background: rgba(93, 138, 168, 0.2);
-            padding: 3px 8px;
-            border-radius: 4px;
+            background: rgba(93, 138, 168, 0.15);
+            padding: 5px 12px;
+            border-radius: 20px;
         }
         
         .script-content {
-            padding: 15px;
+            padding: 20px;
         }
         
         .script-description {
-            margin-bottom: 15px;
-            color: #c0c0c0;
+            margin-bottom: 20px;
+            color: var(--text-light);
             font-size: 0.95rem;
+            line-height: 1.6;
         }
         
         .script-code {
             background: rgba(0, 0, 0, 0.2);
-            padding: 12px;
-            border-radius: 6px;
-            font-family: monospace;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Roboto Mono', monospace;
             font-size: 0.9rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             overflow-x: auto;
             position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .copy-btn {
             position: absolute;
-            top: 5px;
-            right: 5px;
+            top: 10px;
+            right: 10px;
             background: var(--primary);
             border: none;
             color: var(--text);
-            padding: 5px 10px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 0.8rem;
-            transition: background 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .copy-btn:hover {
@@ -305,14 +414,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 15px;
+            padding: 15px 20px;
             background: rgba(0, 0, 0, 0.1);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .script-meta {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
         
         .meta-item {
@@ -320,97 +429,135 @@
             align-items: center;
             gap: 5px;
             font-size: 0.9rem;
-            color: #a0a0a0;
+            color: var(--text-light);
         }
         
         /* Features Section */
         .features-section {
-            padding: 60px 0;
+            padding: 100px 0;
             background: var(--primary);
+            position: relative;
         }
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
             gap: 30px;
         }
         
         .feature-card {
             background: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
+            padding: 30px;
+            border-radius: 15px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
         
         .feature-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
         }
         
         .feature-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
             color: var(--accent);
         }
         
         .feature-description {
-            color: #c0c0c0;
+            color: var(--text-light);
+            line-height: 1.6;
         }
         
         /* Registration Section */
         .registration-section {
-            padding: 80px 0;
+            padding: 120px 0;
             text-align: center;
             background: linear-gradient(to bottom, var(--background), var(--primary));
+            position: relative;
+        }
+        
+        .registration-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .registration-benefits {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
+            gap: 30px;
+            margin: 50px 0;
         }
         
         .benefit-item {
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
+            padding: 25px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: var(--transition);
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
         }
         
         .benefit-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .benefit-item:hover .benefit-icon {
+            transform: scale(1.1);
+        }
+        
+        .benefit-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .benefit-description {
+            color: var(--text-light);
+            text-align: center;
         }
         
         /* Footer */
         footer {
             background: var(--primary);
-            padding: 40px 0 20px;
+            padding: 60px 0 30px;
+            position: relative;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 40px;
+            margin-bottom: 40px;
         }
         
         .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
             color: var(--accent);
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
         
         .footer-column h3::after {
@@ -419,8 +566,15 @@
             bottom: 0;
             left: 0;
             width: 40px;
-            height: 2px;
-            background: var(--accent);
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .footer-column p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
         
         .footer-column ul {
@@ -428,46 +582,50 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-column a {
-            color: #c0c0c0;
+            color: var(--text-light);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .footer-column a:hover {
             color: var(--accent);
+            transform: translateX(5px);
         }
         
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: var(--card-bg);
             border-radius: 50%;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
         
         .social-links a:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
+            background: var(--gradient);
+            transform: translateY(-5px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #a0a0a0;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
         
@@ -479,37 +637,58 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
             align-items: center;
             justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
         }
         
         .modal-content {
             background: var(--card-bg);
-            width: 90%;
+            width: 100%;
             max-width: 500px;
-            border-radius: 10px;
-            padding: 25px;
+            border-radius: 15px;
+            padding: 30px;
             position: relative;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(50px);
+            transition: transform 0.5s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
         }
         
         .close-modal {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 20px;
+            right: 20px;
             background: none;
             border: none;
             color: var(--text);
             font-size: 1.5rem;
             cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
         }
         
         .modal-title {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: var(--accent);
             text-align: center;
+            font-size: 1.8rem;
         }
         
         .form-group {
@@ -518,33 +697,64 @@
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
+            color: var(--text);
         }
         
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 15px;
             background: var(--secondary);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
+            border-radius: 8px;
             color: var(--text);
+            transition: var(--transition);
         }
         
         .form-group input:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(93, 138, 168, 0.2);
         }
         
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
         /* Responsive */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                gap: 30px;
+            }
+            
+            .stat-item {
+                min-width: 140px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
             }
             
             nav ul {
-                gap: 10px;
+                gap: 15px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
@@ -553,14 +763,57 @@
                 font-size: 2rem;
             }
             
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .stats {
                 gap: 20px;
-                flex-wrap: wrap;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                padding: 15px;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
             }
             
             .script-filters {
                 gap: 10px;
             }
+            
+            .scripts-grid, .features-grid, .registration-benefits, .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-dark);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
         }
     </style>
 </head>
@@ -569,23 +822,27 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-snowflake"></i>
-                    <h1>FrostHub</h1>
-                </div>
+                <a href="#" class="logo">
+                    <i class="fas fa-snowflake logo-icon"></i>
+                    <span class="logo-text">FrostHub</span>
+                </a>
                 
                 <nav>
                     <ul>
                         <li><a href="#scripts">Скрипты</a></li>
                         <li><a href="#features">Преимущества</a></li>
-                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#premium">Премиум</a></li>
                         <li><a href="#support">Поддержка</a></li>
                     </ul>
                 </nav>
                 
                 <div class="user-actions">
-                    <button class="btn btn-outline" id="loginBtn">Войти</button>
-                    <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+                    <button class="btn btn-outline" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                    <button class="btn btn-primary" id="registerBtn">
+                        <i class="fas fa-user-plus"></i> Регистрация
+                    </button>
                 </div>
             </div>
         </div>
@@ -594,21 +851,31 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h2>Лучшие скрипты для Roblox</h2>
-            <p>Откройте для себя мощные и проверенные скрипты для ваших любимых игр Roblox. Улучшите свой игровой опыт с FrostHub!</p>
-            <button class="btn btn-primary">Начать использование</button>
+            <div class="hero-content fade-in">
+                <h2>Мощные скрипты для твоего геймплея в Roblox</h2>
+                <p>Открой более чем 150 эксклюзивных скриптов для улучшения игрового опыта в твоих любимых играх</p>
+                
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-bolt"></i> Начать использование
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-crown"></i> Премиум доступ
+                    </button>
+                </div>
+            </div>
             
             <div class="stats">
-                <div class="stat-item">
+                <div class="stat-item fade-in delay-1">
                     <div class="stat-number">150+</div>
                     <div class="stat-label">Скриптов</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">12k+</div>
+                <div class="stat-item fade-in delay-2">
+                    <div class="stat-number">24k+</div>
                     <div class="stat-label">Пользователей</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">95%</div>
+                <div class="stat-item fade-in delay-3">
+                    <div class="stat-number">98%</div>
                     <div class="stat-label">Одобрений</div>
                 </div>
             </div>
@@ -618,27 +885,31 @@
     <!-- Scripts Section -->
     <section class="scripts-section" id="scripts">
         <div class="container">
-            <h2 class="section-title">Популярные скрипты</h2>
+            <h2 class="section-title fade-in">Популярные скрипты</h2>
             
             <div class="script-filters">
                 <button class="filter-btn active">Все</button>
                 <button class="filter-btn">Steal A Brainrot</button>
                 <button class="filter-btn">Murder Mystery 2</button>
+                <button class="filter-btn">Pet Simulator</button>
                 <button class="filter-btn">Другие</button>
             </div>
             
             <div class="scripts-grid">
                 <!-- Script 1 -->
-                <div class="script-card">
+                <div class="script-card fade-in">
+                    <div class="script-badge">Популярный</div>
                     <div class="script-header">
                         <div class="script-title">Chilli Hub</div>
                         <div class="script-game">Steal A Brainrot</div>
                     </div>
                     <div class="script-content">
-                        <p class="script-description">Многофункциональный скрипт с большим количеством возможностей для игры Steal A Brainrot.</p>
+                        <p class="script-description">Многофункциональный скрипт с большим количеством возможностей для игры Steal A Brainrot. Включает авто-фарм, телепортацию и многое другое.</p>
                         <div class="script-code">
                             loadstring(game:HttpGet("https://raw.githubusercontent.com/tienkhanh1/spicy/main/Chilli.lua"))()
-                            <button class="copy-btn">Копировать</button>
+                            <button class="copy-btn">
+                                <i class="fas fa-copy"></i> Копировать
+                            </button>
                         </div>
                     </div>
                     <div class="script-footer">
@@ -651,16 +922,19 @@
                 </div>
                 
                 <!-- Script 2 -->
-                <div class="script-card">
+                <div class="script-card fade-in delay-1">
+                    <div class="script-badge">Обновлён</div>
                     <div class="script-header">
                         <div class="script-title">Miranda Tween Update</div>
                         <div class="script-game">Steal A Brainrot</div>
                     </div>
                     <div class="script-content">
-                        <p class="script-description">Обновленная версия популярного скрипта Miranda с улучшенным функционалом.</p>
+                        <p class="script-description">Обновленная версия популярного скрипта Miranda с улучшенным функционалом и исправлением багов. Новый интерфейс и оптимизация.</p>
                         <div class="script-code">
                             loadstring(game:HttpGet("https://pastefy.app/JJVhs3rK/raw"))()
-                            <button class="copy-btn">Копировать</button>
+                            <button class="copy-btn">
+                                <i class="fas fa-copy"></i> Копировать
+                            </button>
                         </div>
                     </div>
                     <div class="script-footer">
@@ -673,16 +947,19 @@
                 </div>
                 
                 <!-- Script 3 -->
-                <div class="script-card">
+                <div class="script-card fade-in delay-2">
+                    <div class="script-badge">Премиум</div>
                     <div class="script-header">
                         <div class="script-title">Vertex-peak</div>
                         <div class="script-game">Murder Mystery 2</div>
                     </div>
                     <div class="script-content">
-                        <p class="script-description">Мощный скрипт для Murder Mystery 2 с уникальными функциями и простым интерфейсом.</p>
+                        <p class="script-description">Мощный скрипт для Murder Mystery 2 с уникальными функциями и простым интерфейсом. Обнаружение убийцы, авто-ферма монет и многое другое.</p>
                         <div class="script-code">
                             loadstring(game:HttpGet("https://raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/loadstring"))()
-                            <button class="copy-btn">Копировать</button>
+                            <button class="copy-btn">
+                                <i class="fas fa-copy"></i> Копировать
+                            </button>
                         </div>
                     </div>
                     <div class="script-footer">
@@ -695,16 +972,19 @@
                 </div>
                 
                 <!-- Script 4 -->
-                <div class="script-card">
+                <div class="script-card fade-in delay-3">
+                    <div class="script-badge">Новый</div>
                     <div class="script-header">
                         <div class="script-title">Pet Finder</div>
                         <div class="script-game">Steal A Brainrot</div>
                     </div>
                     <div class="script-content">
-                        <p class="script-description">Скрипт для быстрого поиска питомцев в игре Steal A Brainrot.</p>
+                        <p class="script-description">Скрипт для быстрого поиска питомцев в игре Steal A Brainrot. Включает радар для поиска, авто-подбор и сортировку питомцев по редкости.</p>
                         <div class="script-code">
                             loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/24a30c9b5fc50ca02c5d6de6f7e5be5e.lua"))()
-                            <button class="copy-btn">Копировать</button>
+                            <button class="copy-btn">
+                                <i class="fas fa-copy"></i> Копировать
+                            </button>
                         </div>
                     </div>
                     <div class="script-footer">
@@ -722,101 +1002,105 @@
     <!-- Features Section -->
     <section class="features-section" id="features">
         <div class="container">
-            <h2 class="section-title">Почему выбирают нас</h2>
+            <h2 class="section-title fade-in">Почему выбирают нас</h2>
             
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3 class="feature-title">Безопасность</h3>
-                    <p class="feature-description">Все наши скрипты проверяются на безопасность и отсутствие вредоносного кода.</p>
+                    <p class="feature-description">Все наши скрипты проверяются на безопасность и отсутствие вредоносного кода. Ваш аккаунт в полной безопасности.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in delay-1">
                     <div class="feature-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
                     <h3 class="feature-title">Производительность</h3>
-                    <p class="feature-description">Оптимизированные скрипты, которые не нагружают вашу систему и работают стабильно.</p>
+                    <p class="feature-description">Оптимизированные скрипты, которые не нагружают вашу систему и работают стабильно даже на слабых устройствах.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in delay-2">
                     <div class="feature-icon">
                         <i class="fas fa-sync"></i>
                     </div>
                     <h3 class="feature-title">Регулярные обновления</h3>
-                    <p class="feature-description">Мы постоянно обновляем скрипты для совместимости с новыми версиями игр.</p>
+                    <p class="feature-description">Мы постоянно обновляем скрипты для совместимости с новыми версиями игр. Всегда актуальные функции.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in delay-3">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="feature-title">Поддержка</h3>
-                    <p class="feature-description">Наша команда всегда готова помочь вам с любыми вопросами и проблемами.</p>
+                    <h3 class="feature-title">Поддержка 24/7</h3>
+                    <p class="feature-description">Наша команда всегда готова помочь вам с любыми вопросами и проблемами через Telegram-бота.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-gem"></i>
                     </div>
                     <h3 class="feature-title">Эксклюзивные скрипты</h3>
-                    <p class="feature-description">Доступ к уникальным скриптам, которых нет на других платформах.</p>
+                    <p class="feature-description">Доступ к уникальным скриптам, которых нет на других платформах. Только для наших пользователей.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in delay-1">
                     <div class="feature-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h3 class="feature-title">Удобный интерфейс</h3>
-                    <p class="feature-description">Интуитивно понятный сайт, с которым легко работать даже новичкам.</p>
+                    <p class="feature-description">Интуитивно понятный сайт, с которым легко работать даже новичкам. Всё организовано для вашего удобства.</p>
                 </div>
             </div>
         </div>
     </section>
     
     <!-- Registration Section -->
-    <section class="registration-section" id="register">
+    <section class="registration-section" id="premium">
         <div class="container">
-            <h2 class="section-title">Присоединяйтесь к сообществу</h2>
-            <p>Зарегистрируйтесь сейчас и получите эксклюзивные преимущества</p>
-            
-            <div class="registration-benefits">
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-rocket"></i>
+            <div class="registration-content">
+                <h2 class="section-title fade-in">Присоединяйтесь к сообществу</h2>
+                <p class="fade-in">Зарегистрируйтесь сейчас и получите эксклюзивные преимущества</p>
+                
+                <div class="registration-benefits">
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="benefit-title">Ранний доступ</h3>
+                        <p class="benefit-description">Получайте новые скрипты на 24 часа раньше других пользователей</p>
                     </div>
-                    <h3>Ранний доступ</h3>
-                    <p>Получайте новые скрипты на 24 часа раньше других</p>
+                    
+                    <div class="benefit-item fade-in delay-1">
+                        <div class="benefit-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3 class="benefit-title">Эксклюзивные скрипты</h3>
+                        <p class="benefit-description">Доступ к скриптам, которых нет в открытом доступе</p>
+                    </div>
+                    
+                    <div class="benefit-item fade-in delay-2">
+                        <div class="benefit-icon">
+                            <i class="fas fa-comment-alt"></i>
+                        </div>
+                        <h3 class="benefit-title">Приоритетная поддержка</h3>
+                        <p class="benefit-description">Ваши вопросы решаются в первую очередь</p>
+                    </div>
+                    
+                    <div class="benefit-item fade-in delay-3">
+                        <div class="benefit-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="benefit-title">Кастомизация</h3>
+                        <p class="benefit-description">Запросы на создание или изменение скриптов под ваши нужды</p>
+                    </div>
                 </div>
                 
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3>Эксклюзивные скрипты</h3>
-                    <p>Доступ к скриптам, которых нет в открытом доступе</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-comment-alt"></i>
-                    </div>
-                    <h3>Приоритетная поддержка</h3>
-                    <p>Ваши вопросы решаются в первую очередь</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Кастомизация</h3>
-                    <p>Запросы на создание или изменение скриптов</p>
-                </div>
+                <button class="btn btn-primary fade-in" id="mainRegisterBtn">
+                    <i class="fas fa-user-plus"></i> Зарегистрироваться
+                </button>
             </div>
-            
-            <button class="btn btn-primary" id="mainRegisterBtn">Зарегистрироваться</button>
         </div>
     </section>
     
@@ -838,35 +1122,36 @@
                 <div class="footer-column">
                     <h3>Навигация</h3>
                     <ul>
-                        <li><a href="#scripts">Скрипты</a></li>
-                        <li><a href="#features">Преимущества</a></li>
-                        <li><a href="#register">Регистрация</a></li>
-                        <li><a href="#support">Поддержка</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Скрипты</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Преимущества</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Премиум</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Поддержка</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Поддержка</h3>
                     <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Инструкции</a></li>
-                        <li><a href="#">Сообщить о ошибке</a></li>
-                        <li><a href="#">Запрос скрипта</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Инструкции</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Сообщить о ошибке</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Запрос скрипта</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Контакты</h3>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> Email: support@frosthub.ru</li>
-                        <li><i class="fab fa-telegram"></i> ТГК: @frosthubscripts</li>
-                        <li><i class="fab fa-telegram"></i> Поддержка: @frosthubsupport_bot</li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@frosthub.ru</a></li>
+                        <li><a href="#"><i class="fab fa-telegram"></i> @frosthubscripts</a></li>
+                        <li><a href="#"><i class="fab fa-telegram"></i> @frosthubsupport_bot</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-alt"></i> 17.09.2025</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 FrostHub — Лучшие скрипты для Roblox. Дата обновления: 17.09.2025</p>
+                <p>&copy; 2025 FrostHub — Лучшие скрипты для Roblox. Все права защищены.</p>
             </div>
         </div>
     </footer>
@@ -885,7 +1170,9 @@
                     <label for="loginPassword">Пароль</label>
                     <input type="password" id="loginPassword" placeholder="Введите ваш пароль">
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Войти</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Войти
+                </button>
             </form>
         </div>
     </div>
@@ -912,7 +1199,9 @@
                     <label for="regConfirmPassword">Подтверждение пароля</label>
                     <input type="password" id="regConfirmPassword" placeholder="Повторите ваш пароль">
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Зарегистрироваться</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-user-plus"></i> Зарегистрироваться
+                </button>
             </form>
         </div>
     </div>
@@ -927,12 +1216,12 @@
         const closeButtons = document.querySelectorAll('.close-modal');
         
         function showModal(modal) {
-            modal.style.display = 'flex';
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
         
         function hideModal(modal) {
-            modal.style.display = 'none';
+            modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
         
@@ -960,12 +1249,12 @@
                 const textToCopy = codeBlock.textContent.replace('Копировать', '').trim();
                 
                 navigator.clipboard.writeText(textToCopy).then(() => {
-                    const originalText = button.textContent;
-                    button.textContent = 'Скопировано!';
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
                     button.style.background = 'var(--success)';
                     
                     setTimeout(() => {
-                        button.textContent = originalText;
+                        button.innerHTML = originalText;
                         button.style.background = '';
                     }, 2000);
                 }).catch(err => {
@@ -985,6 +1274,23 @@
                 // For demonstration, we're just toggling the active class
             });
         });
+        
+        // Animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = 1;
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
     </script>
 </body>
 </html>
