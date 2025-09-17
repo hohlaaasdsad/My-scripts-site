@@ -3,38 +3,686 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Scripts - Фотка Чит</title>
+    <title>FrostHub - Лучшие скрипты для Roblox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #2a3b4c;
+            --secondary: #3a4b5c;
+            --accent: #5d8aa8;
+            --text: #e0e0e0;
+            --background: #1e2a38;
+            --card-bg: #253241;
+            --success: #5cb85c;
+            --warning: #f0ad4e;
+            --error: #d9534f;
+            --highlight: #6c8ba7;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
         }
         
         .container {
-            max-width: 1000px;
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
         
+        /* Header Styles */
         header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--primary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
         
-        h1 {
-            font-size: 2.8rem;
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 28px;
+            color: var(--accent);
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--accent), #8fc1e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4a7699;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--primary), var(--background));
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--accent), #8fc1e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #c0c0c0;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #c0c0c0;
+        }
+        
+        /* Scripts Section */
+        .scripts-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .script-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 20px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .script-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .script-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .script-header {
+            padding: 15px;
+            background: var(--secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .script-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .script-game {
+            font-size: 0.9rem;
+            color: var(--accent);
+            background: rgba(93, 138, 168, 0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        
+        .script-content {
+            padding: 15px;
+        }
+        
+        .script-description {
+            margin-bottom: 15px;
+            color: #c0c0c0;
+            font-size: 0.95rem;
+        }
+        
+        .script-code {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--primary);
+            border: none;
+            color: var(--text);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: var(--accent);
+        }
+        
+        .script-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .script-meta {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 60px 0;
+            background: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .feature-description {
+            color: #c0c0c0;
+        }
+        
+        /* Registration Section */
+        .registration-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--background), var(--primary));
+        }
+        
+        .registration-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .benefit-item {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #c0c0c0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--text);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            
+            .script-filters {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-snowflake"></i>
+                    <h1>FrostHub</h1>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#scripts">Скрипты</a></li>
+                        <li><a href="#features">Преимущества</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#support">Поддержка</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-actions">
+                    <button class="btn btn-outline" id="loginBtn">Войти</button>
+                    <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Лучшие скрипты для Roblox</h2>
+            <p>Откройте для себя мощные и проверенные скрипты для ваших любимых игр Roblox. Улучшите свой игровой опыт с FrostHub!</p>
+            <button class="btn btn-primary">Начать использование</button>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Скриптов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12k+</div>
+                    <div class="stat-label">Пользователей</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Одобрений</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scripts Section -->
+    <section class="scripts-section" id="scripts">
+        <div class="container">
+            <h2 class="section-title">Популярные скрипты</h2>
+            
+            <div class="script-filters">
+                <button class="filter-btn active">Все</button>
+                <button class="filter-btn">Steal A Brainrot</button>
+                <button class="filter-btn">Murder Mystery 2</button>
+                <button class="filter-btn">Другие</button>
+            </div>
+            
+            <div class="scripts-grid">
+                <!-- Script 1 -->
+                <div class="script-card">
+                    <div class="script-header">
+                        <div class="script-title">Chilli Hub</div>
+                        <div class="script-game">Steal A Brainrot</div>
+                    </div>
+                    <div class="script-content">
+                        <p class="script-description">Многофункциональный скрипт с большим количеством возможностей для игры Steal A Brainrot.</p>
+                        <div class="script-code">
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/tienkhanh1/spicy/main/Chilli.lua"))()
+                            <button class="copy-btn">Копировать</button>
+                        </div>
+                    </div>
+                    <div class="script-footer">
+                        <div class="script-meta">
+                            <span class="meta-item"><i class="fas fa-download"></i> 2.4k</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <button class="btn btn-outline">Использовать</button>
+                    </div>
+                </div>
+                
+                <!-- Script 2 -->
+                <div class="script-card">
+                    <div class="script-header">
+                        <div class="script-title">Miranda Tween Update</div>
+                        <div class="script-game">Steal A Brainrot</div>
+                    </div>
+                    <div class="script-content">
+                        <p class="script-description">Обновленная версия популярного скрипта Miranda с улучшенным функционалом.</p>
+                        <div class="script-code">
+                            loadstring(game:HttpGet("https://pastefy.app/JJVhs3rK/raw"))()
+                            <button class="copy-btn">Копировать</button>
+                        </div>
+                    </div>
+                    <div class="script-footer">
+                        <div class="script-meta">
+                            <span class="meta-item"><i class="fas fa-download"></i> 1.8k</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                        <button class="btn btn-outline">Использовать</button>
+                    </div>
+                </div>
+                
+                <!-- Script 3 -->
+                <div class="script-card">
+                    <div class="script-header">
+                        <div class="script-title">Vertex-peak</div>
+                        <div class="script-game">Murder Mystery 2</div>
+                    </div>
+                    <div class="script-content">
+                        <p class="script-description">Мощный скрипт для Murder Mystery 2 с уникальными функциями и простым интерфейсом.</p>
+                        <div class="script-code">
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/loadstring"))()
+                         font-size: 2.8rem;
             margin-bottom: 10px;
             color: #ff6b6b;
             text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
